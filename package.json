@@ -1,0 +1,12 @@
+{
+  "name": "coquette-accessory",
+  "private": true,
+  "scripts": {
+    "dev": "node tests/server.cjs",
+    "test": "node --test tests/data.test.cjs",
+    "test:browser": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.63.0"
+  }
+}

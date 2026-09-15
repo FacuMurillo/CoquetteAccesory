@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex,nofollow"><meta name="theme-color" content="#f3e3df">
+  <title>Administración | Coquette Accessory</title>
+  <link rel="icon" href="assets/favicon.svg"><link rel="stylesheet" href="css/styles.css"><link rel="stylesheet" href="css/admin.css">
+  <script src="js/config.js" defer></script><script src="js/products.js" defer></script><script src="js/data.js" defer></script><script src="js/admin.js" defer></script>
+</head>
+<body class="admin-page">
+  <a class="skip-link" href="#admin-main">Saltar al contenido</a>
+  <header class="admin-header"><a class="wordmark" href="index.html">coquette<span>ACCESSORY</span></a><div><a class="text-link" href="index.html" target="_blank" rel="noopener">Ver tienda ↗</a><button id="logout" class="secondary" hidden>Cerrar sesión</button></div></header>
+  <main id="admin-main" class="admin-container">
+    <div id="admin-status" class="admin-status" role="status" aria-live="polite"></div>
+    <section id="login-section" class="login-card">
+      <span class="eyebrow">EL DETRÁS DE TU MARCA</span><h1>Hola, Coquette.</h1><p>Un espacio para cuidar tu colección y darle lugar a nuevos favoritos.</p>
+      <form id="login-form"><label for="email">Email</label><input id="email" type="email" autocomplete="username" required maxlength="254"><label for="password">Contraseña</label><input id="password" type="password" autocomplete="current-password" required><button class="button" type="submit">Ingresar al panel ↗</button><p class="field-help">Acceso exclusivo para cuentas autorizadas. Si olvidaste la contraseña, pedile a quien configuró la tienda que restablezca tu acceso.</p></form>
+      <div id="setup-info" hidden><p class="setup-note">El panel está listo para conectar a Supabase. Mientras tanto, podés practicar con una demo local.</p><button id="open-demo" class="button">Probar el panel</button><p class="field-help">Los cambios de prueba se guardan solo en este navegador y no modifican la tienda.</p></div>
+    </section>
+    <section id="dashboard" hidden>
+      <div id="demo-banner" class="demo-banner" hidden>Modo de prueba · Estos cambios no se publican en la tienda. Las fotos cargadas duran hasta recargar el panel.</div>
+      <div class="dashboard-heading"><div><span class="eyebrow">TU TIENDA, A TU MANERA</span><h1>Tu colección</h1><p>Agregá nuevos favoritos y mantené cada detalle al día.</p></div><button id="new-product" class="button">+ Nuevo producto</button></div>
+      <div class="stats"><div><span>Productos</span><strong id="stat-total">0</strong></div><div><span>Publicados</span><strong id="stat-active">0</strong></div><div><span>Sin stock</span><strong id="stat-empty">0</strong></div></div>
+      <div class="admin-toolbar"><label>Buscar producto<input id="admin-search" type="search" placeholder="Nombre o categoría" maxlength="100"></label><label>Mostrar<select id="admin-filter"><option value="all">Todos los productos</option><option value="active">Publicados</option><option value="hidden">Ocultos</option><option value="empty">Sin stock</option></select></label><button id="refresh" class="secondary">Actualizar lista</button></div>
+      <p class="field-help">Los pedidos se coordinan por WhatsApp. Cuando confirmes una venta, descontá las unidades en el stock del producto.</p>
+      <div id="admin-products" class="admin-products"></div>
+      <p id="admin-empty" class="admin-empty" hidden>No hay productos para mostrar. Creá uno nuevo o cambiá los filtros.</p>
+    </section>
+  </main>
+  <dialog id="product-dialog" class="product-dialog" aria-labelledby="editor-title">
+    <div class="editor-header"><div><span class="eyebrow">CADA DETALLE CUENTA</span><h2 id="editor-title">Nuevo producto</h2></div><button id="editor-close" class="icon-button" aria-label="Cerrar editor">✕</button></div>
+    <form id="product-form">
+      <fieldset id="editor-fields">
+        <div class="editor-grid"><div class="photo-field"><img id="image-preview" src="assets/placeholder.svg" alt="Vista previa del producto"><label for="product-image">Foto del producto</label><input id="product-image" type="file" accept="image/jpeg,image/png,image/webp"><p class="field-help">JPG, PNG o WebP · Hasta 5 MB.<br>Si no cargás una foto, usamos una imagen provisoria.</p></div>
+        <div class="product-fields"><label for="product-name">Nombre</label><input id="product-name" required maxlength="100" placeholder="Ej. Collar Aurora"><label for="product-category">Categoría</label><select id="product-category"><option>Collares</option><option>Aros</option><option>Anillos</option><option>Pulseras</option></select><div class="fields-row"><div><label for="product-price">Precio en ARS</label><input id="product-price" type="number" min="0.01" max="99999999" step="0.01" required inputmode="decimal"></div><div><label for="product-stock">Unidades en stock</label><input id="product-stock" type="number" min="0" max="99999" step="1" required value="0" inputmode="numeric"></div></div><label for="product-description">Descripción breve</label><textarea id="product-description" maxlength="2000" rows="3" placeholder="Material, medidas o un detalle especial"></textarea><label for="product-badge">Etiqueta</label><select id="product-badge"><option value="">Sin etiqueta</option><option>Nuevo</option><option>Más vendido</option></select></div></div>
+        <div class="editor-options"><label><input type="checkbox" id="product-active"> Publicar en la tienda</label><label><input type="checkbox" id="product-featured"> Destacado</label><label><input type="checkbox" id="product-new"> Novedad</label></div>
+        <p class="field-help">Un producto publicado con stock 0 aparece como agotado. Desmarcá “Publicar” para ocultarlo.</p>
+      </fieldset>
+      <p id="editor-status" class="editor-status" role="status" aria-live="polite"></p>
+      <div class="editor-footer"><button id="editor-cancel" type="button" class="secondary">Cancelar</button><button id="save-product" type="submit" class="button">Guardar producto ↗</button></div>
+    </form>
+  </dialog>
+  <footer class="admin-footer">Coquette Accessory · Un pequeño espacio para hacer crecer tu marca.</footer>
+</body>
+</html>
